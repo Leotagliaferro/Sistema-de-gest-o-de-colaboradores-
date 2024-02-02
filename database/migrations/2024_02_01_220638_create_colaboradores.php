@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('colaborador', function (Blueprint $table) {
+        Schema::create('colaboradores', function (Blueprint $table) {
             $table->id();
             $table->string("nome");
             $table->string("cpf")->unique();

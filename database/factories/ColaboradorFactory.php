@@ -1,0 +1,28 @@
+<?php
+
+namespace Database\Factories;
+
+use App\Models\Cargo;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
+ */
+class ColaboradorFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     * 
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        return [
+            'cargo_id'=>Cargo::pluck('id')->random(),
+            'nome' =>$this->faker->company,
+            'cpf'=>$this->faker->numerify('###########'),
+            'telefone'=>$this->faker->numerify('############'),
+            'url_foto'=>"default.png"
+        ];
+    }
+}
