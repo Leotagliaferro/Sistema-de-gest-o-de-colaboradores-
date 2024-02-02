@@ -17,6 +17,7 @@ return new class extends Migration
             $table->dateTime("horario_observacao");
             $table->foreignId("colaborador_id")->constrained("colaboradores");
             $table->string("usuario");
+            $table->softDeletes();
             $table->timestamps();
         });
     }

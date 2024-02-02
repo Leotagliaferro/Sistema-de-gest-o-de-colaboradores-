@@ -17,6 +17,7 @@ return new class extends Migration
             $table->date("data_pagamento");
             $table->decimal("valor_do_salario", 8, 2);
             $table->string("cargo");
+            $table->softDeletes();
             $table->timestamps(); 
         });
     }

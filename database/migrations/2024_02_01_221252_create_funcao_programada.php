@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string("novo_cargo_id")->constrained("cargos");
             $table->dateTime("horario_mudanca");
             $table->string("status")->default("pendente");
+            $table->softDeletes();
             $table->timestamps();
         });
     }

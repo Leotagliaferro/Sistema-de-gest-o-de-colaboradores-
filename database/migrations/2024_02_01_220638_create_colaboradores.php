@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("telefone", 12);
             $table->string("url_foto");
             $table->foreignId("cargo_id")->constrained("cargos");
+            $table->softDeletes();
             $table->timestamps();
         });
     }
