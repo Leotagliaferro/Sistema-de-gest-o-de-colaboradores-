@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text("observacoes");
             $table->dateTime("horario_observacao");
-            $table->foreignId("colaboradores_id")->constrained("colaboradores");
+            $table->foreignId("colaborador_id")->constrained("colaboradores");
             $table->string("usuario");
             $table->timestamps();
         });
