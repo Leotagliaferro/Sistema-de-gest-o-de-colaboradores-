@@ -6,14 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Colaborador extends Model
+class HistoricoPagamento extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $table = "colaboradores";
+    protected $table = "historico_pagamentos";
     protected $fillable = [
-        'nome',
-        'cpf',
-        'telefone',
+        'data_pagamento',
+        'valor_do_salario',
         'cargo',
     ];
+
+
+ 
+
 }

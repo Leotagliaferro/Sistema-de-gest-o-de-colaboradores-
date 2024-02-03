@@ -6,14 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Colaborador extends Model
+class FuncaoProgramada extends Model
 {
+    protected $table = "funcao_programada";
     use HasFactory, SoftDeletes;
-    protected $table = "colaboradores";
     protected $fillable = [
-        'nome',
-        'cpf',
-        'telefone',
-        'cargo',
+        'horario_mudanca',
+        'status'
     ];
 }
+
+
+
