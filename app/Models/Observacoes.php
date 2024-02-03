@@ -6,11 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class cargo extends Model
-{   
+class Observacoes extends Model
+{
     use HasFactory, SoftDeletes;
+    protected $table = "observacoes";
     protected $fillable = [
-        'nome_cargo',
-        'salario',
+        'observacoes',
+        'horario_observacao',
+        'usuario',
     ];
+
 }
