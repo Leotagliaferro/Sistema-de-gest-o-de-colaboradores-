@@ -2,24 +2,24 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Fields\Money;
-use App\Filament\Resources\CargoResource\Pages;
-use App\Filament\Resources\CargoResource\RelationManagers;
-use App\Models\Cargo;
+use App\Filament\Resources\ColaboradorResource\Pages;
+use App\Filament\Resources\ColaboradorResource\RelationManagers;
+use App\Models\Colaborador;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-
-class CargoResource extends Resource
+class ColaboradorResource extends Resource
 {
-    protected static ?string $model = Cargo::class;
+    protected static ?string $model = Colaborador::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -27,8 +27,10 @@ class CargoResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('nome_cargo')->label("Nome do cargo"),
-                Money::make("salario")
+                TextInput::make('nome')->label("Nome"),
+                TextInput::make('cpf')->label("cpf"),
+                TextInput::make('telefone')->label("telefone"),
+                FileUpload::make('url_foto')->label("Insira uma imagem") 
             ]);
     }
 
@@ -36,9 +38,8 @@ class CargoResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('nome_cargo')->label("Cargos"),
-                TextColumn::make("salario")->label("salario")
-                
+                TextColumn::make('nome')->label("Nome"),
+                TextColumn::make('cpf')->label("CPF"),
             ])
             ->filters([
                 //
@@ -63,9 +64,9 @@ class CargoResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCargos::route('/'),
-            'create' => Pages\CreateCargo::route('/create'),
-            'edit' => Pages\EditCargo::route('/{record}/edit'),
+            'index' => Pages\ListColaboradors::route('/'),
+            'create' => Pages\CreateColaborador::route('/create'),
+            'edit' => Pages\EditColaborador::route('/{record}/edit'),
         ];
     }
 }

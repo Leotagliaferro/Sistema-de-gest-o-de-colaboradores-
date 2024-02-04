@@ -2,10 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Fields\Money;
-use App\Filament\Resources\CargoResource\Pages;
-use App\Filament\Resources\CargoResource\RelationManagers;
-use App\Models\Cargo;
+use App\Filament\Resources\HistoricoPagamentoResource\Pages;
+use App\Filament\Resources\HistoricoPagamentoResource\RelationManagers;
+use App\Models\HistoricoPagamento;
 use Filament\Forms;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -16,10 +15,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-
-class CargoResource extends Resource
+class HistoricoPagamentoResource extends Resource
 {
-    protected static ?string $model = Cargo::class;
+    protected static ?string $model = HistoricoPagamento::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -27,8 +25,7 @@ class CargoResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('nome_cargo')->label("Nome do cargo"),
-                Money::make("salario")
+                //
             ]);
     }
 
@@ -36,9 +33,9 @@ class CargoResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('nome_cargo')->label("Cargos"),
-                TextColumn::make("salario")->label("salario")
-                
+                TextColumn::make('data_pagamento')->label("Data do pagamento"),
+                TextColumn::make('valor_do_salario')->label("valor do salario"),
+                TextColumn::make('cargo')->label("cargo")
             ])
             ->filters([
                 //
@@ -63,9 +60,9 @@ class CargoResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCargos::route('/'),
-            'create' => Pages\CreateCargo::route('/create'),
-            'edit' => Pages\EditCargo::route('/{record}/edit'),
+            'index' => Pages\ListHistoricoPagamentos::route('/'),
+            'create' => Pages\CreateHistoricoPagamento::route('/create'),
+            'edit' => Pages\EditHistoricoPagamento::route('/{record}/edit'),
         ];
     }
 }

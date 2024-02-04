@@ -2,24 +2,24 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Fields\Money;
-use App\Filament\Resources\CargoResource\Pages;
-use App\Filament\Resources\CargoResource\RelationManagers;
-use App\Models\Cargo;
+use App\Filament\Resources\ObservacoesResource\Pages;
+use App\Filament\Resources\ObservacoesResource\RelationManagers;
+use App\Models\Colaborador;
+use App\Models\Observacoes;
+use App\Models\User;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-
-class CargoResource extends Resource
+class ObservacoesResource extends Resource
 {
-    protected static ?string $model = Cargo::class;
+    protected static ?string $model = Observacoes::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -27,8 +27,11 @@ class CargoResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('nome_cargo')->label("Nome do cargo"),
-                Money::make("salario")
+                TextInput::make('observacoes')->label("Observações"),
+                Select::make('colaborador_id')
+                ->label('colaboradores')
+                ->options(Colaborador::all()->pluck('nome', 'id'))
+                ->searchable()
             ]);
     }
 
@@ -36,9 +39,7 @@ class CargoResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('nome_cargo')->label("Cargos"),
-                TextColumn::make("salario")->label("salario")
-                
+                //
             ])
             ->filters([
                 //
@@ -63,9 +64,9 @@ class CargoResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCargos::route('/'),
-            'create' => Pages\CreateCargo::route('/create'),
-            'edit' => Pages\EditCargo::route('/{record}/edit'),
+            'index' => Pages\ListObservacoes::route('/'),
+            'create' => Pages\CreateObservacoes::route('/create'),
+            'edit' => Pages\EditObservacoes::route('/{record}/edit'),
         ];
     }
 }
