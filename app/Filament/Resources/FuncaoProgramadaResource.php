@@ -11,6 +11,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -26,9 +27,8 @@ class FuncaoProgramadaResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('Cargo')->label('cargo'),
-                TextInput::make('cpf')->label("cpf"),
-                TextInput::make('telefone')->label("telefone"),
+                TextInput::make('cargo_id')->label('cargo'),
+                TextInput::make('horario_mudanca')->label('Data da Troca'),
             ]);
     }
 
@@ -36,10 +36,12 @@ class FuncaoProgramadaResource extends Resource
     {
         return $table
             ->columns([
-               
+                TextColumn::make('colaborador.nome')->label('nome'),
+                TextColumn::make('status')->label('Status'),
+                TextColumn::make('horario_mudanca')->label('Data da Troca'),
             ])
             ->filters([
-                //
+                
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

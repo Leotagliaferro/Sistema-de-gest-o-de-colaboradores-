@@ -19,5 +19,6 @@ class cargo extends Model
         return $this->belongsTo(Colaborador::class);
     }
 
+    
 
 }

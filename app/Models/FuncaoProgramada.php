@@ -14,6 +14,15 @@ class FuncaoProgramada extends Model
         'horario_mudanca',
         'status'
     ];
+
+    public function Colaborador() {
+        return $this->belongsTo(Colaborador::class);
+    }
+
+    public function Cargo() {
+        return $this->belongsTo(Cargo::class);
+    }
+
 }
 
 

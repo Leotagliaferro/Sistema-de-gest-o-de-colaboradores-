@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\ColaboradorResource\RelationManagers;
 
 use Filament\Forms;
+use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -19,7 +20,8 @@ class ObservacoesRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                TextInput::make('observacoes')
+                TextInput::make('observacoes'),
+                MarkdownEditor::make('content') 
             ]);
     }
 
