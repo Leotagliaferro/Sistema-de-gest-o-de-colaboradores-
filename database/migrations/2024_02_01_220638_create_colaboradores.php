@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string("nome");
             $table->string("cpf")->unique();
-            $table->string("telefone", 12);
-            $table->string("url_foto");
+            $table->string("telefone");
+            $table->string("url_foto")->nullable();
             $table->foreignId("cargo_id")->constrained("cargos");
             $table->softDeletes();
             $table->timestamps();

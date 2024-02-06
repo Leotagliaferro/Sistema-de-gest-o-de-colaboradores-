@@ -17,7 +17,7 @@ class CargoFactory extends Factory
     public function definition(): array
     {
         return [
-            'nome_cargo' => $this->faker->unique->word,
+            'nome_cargo' => $this->faker->unique()->word,
             'salario'=>$this->faker->randomFloat(2, 10, 1000),
         ];
     }

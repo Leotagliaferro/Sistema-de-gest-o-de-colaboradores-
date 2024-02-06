@@ -18,11 +18,11 @@ class ColaboradorFactory extends Factory
     public function definition(): array
     {
         return [
-            'cargo_id'=>Cargo::pluck('id')->random(),
+            'cargo_id'=>cargo::pluck('id')->random(),
             'nome' =>$this->faker->company,
-            'cpf'=>$this->faker->numerify('###########'),
-            'telefone'=>$this->faker->numerify('############'),
-            'url_foto'=>"default.png"
+            'cpf'=>$this->faker->numerify('###.###.###-##'),
+            'telefone'=>$this->faker->phoneNumber('##-#####-####'),
+            'url_foto'=>$this->faker->imageUrl(400,400)
         ];
     }
 }

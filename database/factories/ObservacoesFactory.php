@@ -19,7 +19,6 @@ class ObservacoesFactory extends Factory
     {
         return [
             'colaborador_id'=>Colaborador::pluck('id')->random(),
-            'horario_observacao' =>$this->faker->date(),
             'observacoes'=>$this->faker->word,
             'usuario'=>$this->faker->word,
         ];

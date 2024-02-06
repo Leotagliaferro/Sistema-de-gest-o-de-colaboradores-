@@ -4,7 +4,10 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ColaboradorResource\Pages;
 use App\Filament\Resources\ColaboradorResource\RelationManagers;
+use App\Filament\Resources\ColaboradorResource\RelationManagers\ObservacoesRelationManager;
 use App\Models\Colaborador;
+use App\Models\Observacoes;
+use Leandrocfe\FilamentPtbrFormFields\PhoneNumber;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
@@ -16,6 +19,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Leandrocfe\FilamentPtbrFormFields\Document;
 
 class ColaboradorResource extends Resource
 {
@@ -28,8 +32,8 @@ class ColaboradorResource extends Resource
         return $form
             ->schema([
                 TextInput::make('nome')->label("Nome"),
-                TextInput::make('cpf')->label("cpf"),
-                TextInput::make('telefone')->label("telefone"),
+                Document::make('cpf')->label("cpf")->dynamic(),
+                PhoneNumber::make('telefone')->label("telefone"),
                 FileUpload::make('url_foto')->label("Insira uma imagem") 
             ]);
     }
@@ -57,7 +61,7 @@ class ColaboradorResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            ObservacoesRelationManager::class
         ];
     }
 

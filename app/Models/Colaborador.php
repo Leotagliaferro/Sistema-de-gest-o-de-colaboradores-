@@ -16,4 +16,11 @@ class Colaborador extends Model
         'telefone',
         'cargo',
     ];
+    public function observacoes() {
+        return $this->hasMany(Observacoes::class);
+    }
+    public function cargo() {
+        return $this->belongsTo(cargo::class);
+    }
+
 }

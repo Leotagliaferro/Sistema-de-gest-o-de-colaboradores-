@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('observacoes', function (Blueprint $table) {
             $table->id();
             $table->text("observacoes");
-            $table->dateTime("horario_observacao");
             $table->foreignId("colaborador_id")->constrained("colaboradores");
             $table->string("usuario");
             $table->softDeletes();

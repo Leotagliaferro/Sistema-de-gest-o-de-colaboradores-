@@ -12,5 +12,12 @@ class cargo extends Model
     protected $fillable = [
         'nome_cargo',
         'salario',
+        'colaborador_id'
     ];
+
+    public function pessoa () {
+        return $this->belongsTo(Colaborador::class);
+    }
+
+
 }

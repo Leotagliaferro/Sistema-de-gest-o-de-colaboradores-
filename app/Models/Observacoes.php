@@ -12,8 +12,12 @@ class Observacoes extends Model
     protected $table = "observacoes";
     protected $fillable = [
         'observacoes',
-        'horario_observacao',
         'usuario',
+        'colaborador_id',
     ];
+
+    public function colaborador() {
+        return $this->hasMany(Colaborador::class);
+    }
 
 }

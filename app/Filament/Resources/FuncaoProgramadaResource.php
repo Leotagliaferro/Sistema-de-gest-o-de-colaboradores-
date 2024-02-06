@@ -2,13 +2,11 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ObservacoesResource\Pages;
-use App\Filament\Resources\ObservacoesResource\RelationManagers;
+use App\Filament\Resources\FuncaoProgramadaResource\Pages;
+use App\Filament\Resources\FuncaoProgramadaResource\RelationManagers;
 use App\Models\Colaborador;
-use App\Models\Observacoes;
-use App\Models\User;
+use App\Models\FuncaoProgramada;
 use Filament\Forms;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -17,9 +15,10 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ObservacoesResource extends Resource
+class FuncaoProgramadaResource extends Resource
 {
-    protected static ?string $model = Observacoes::class;
+    protected static ?string $model = FuncaoProgramada::class;
+    
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -27,11 +26,9 @@ class ObservacoesResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('observacoes')->label("Observações"),
-                Select::make('colaborador_id')
-                ->label('colaboradores')
-                ->options(Colaborador::all()->pluck('nome', 'id'))
-                ->searchable()
+                TextInput::make('Cargo')->label('cargo'),
+                TextInput::make('cpf')->label("cpf"),
+                TextInput::make('telefone')->label("telefone"),
             ]);
     }
 
@@ -39,7 +36,7 @@ class ObservacoesResource extends Resource
     {
         return $table
             ->columns([
-                //
+               
             ])
             ->filters([
                 //
@@ -64,9 +61,9 @@ class ObservacoesResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListObservacoes::route('/'),
-            'create' => Pages\CreateObservacoes::route('/create'),
-            'edit' => Pages\EditObservacoes::route('/{record}/edit'),
+            'index' => Pages\ListFuncaoProgramadas::route('/'),
+            'create' => Pages\CreateFuncaoProgramada::route('/create'),
+            'edit' => Pages\EditFuncaoProgramada::route('/{record}/edit'),
         ];
     }
 }
