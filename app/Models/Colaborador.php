@@ -15,12 +15,13 @@ class Colaborador extends Model
         'cpf',
         'telefone',
         'cargo',
+        'cargo_id',
     ];
     public function observacoes() {
-        return $this->hasMany(Observacoes::class);
+        return $this->hasMany(Observacao::class);
     }
     public function cargo() {
-        return $this->belongsTo(cargo::class);
+        return $this->belongsTo(Cargo::class);
     }
 
 }

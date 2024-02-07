@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Colaborador;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,7 +21,7 @@ class ObservacoesFactory extends Factory
         return [
             'colaborador_id'=>Colaborador::pluck('id')->random(),
             'observacoes'=>$this->faker->word,
-            'usuario'=>$this->faker->word,
+            'usuario'=>User::pluck('id')->random(),
         ];
     }
 }

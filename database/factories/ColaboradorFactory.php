@@ -18,7 +18,7 @@ class ColaboradorFactory extends Factory
     public function definition(): array
     {
         return [
-            'cargo_id'=>cargo::pluck('id')->random(),
+            'cargo_id'=>Cargo::pluck('id')->random(),
             'nome' =>$this->faker->company,
             'cpf'=>$this->faker->numerify('###.###.###-##'),
             'telefone'=>$this->faker->phoneNumber('##-#####-####'),

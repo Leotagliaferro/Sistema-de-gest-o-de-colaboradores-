@@ -5,11 +5,13 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ColaboradorResource\Pages;
 use App\Filament\Resources\ColaboradorResource\RelationManagers;
 use App\Filament\Resources\ColaboradorResource\RelationManagers\ObservacoesRelationManager;
+use App\Models\Cargo;
 use App\Models\Colaborador;
 use App\Models\Observacoes;
 use Leandrocfe\FilamentPtbrFormFields\PhoneNumber;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -34,7 +36,11 @@ class ColaboradorResource extends Resource
                 TextInput::make('nome')->label("Nome"),
                 Document::make('cpf')->label("cpf")->dynamic(),
                 PhoneNumber::make('telefone')->label("telefone"),
-                FileUpload::make('url_foto')->label("Insira uma imagem") 
+                FileUpload::make('url_foto')->label("Insira uma imagem"), 
+                Select::make('cargo_id')
+                ->label('colaboradores')
+                ->options(Cargo::all()->pluck('nome_cargo', 'id'))
+                ->searchable()
             ]);
     }
 
