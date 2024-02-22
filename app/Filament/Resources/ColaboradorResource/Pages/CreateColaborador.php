@@ -10,3 +10,5 @@ class CreateColaborador extends CreateRecord
 {
     protected static string $resource = ColaboradorResource::class;
 }
+
+// test teste
