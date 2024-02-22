@@ -20,8 +20,10 @@ class ObservacoesRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                TextInput::make('observacoes'),
-                MarkdownEditor::make('content') 
+                MarkdownEditor::make('content')
+            ->columnSpan(8)
+
+
             ]);
     }
 
@@ -30,6 +32,7 @@ class ObservacoesRelationManager extends RelationManager
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('observacoes'),
+
             ])
             ->filters([
                 //

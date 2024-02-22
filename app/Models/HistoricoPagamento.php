@@ -14,9 +14,15 @@ class HistoricoPagamento extends Model
         'data_pagamento',
         'valor_do_salario',
         'cargo',
+        'colaborador_id',
     ];
 
 
- 
+    public function Colaborador() {
+        return $this->belongsTo(Colaborador::class);
+    }
+
+
+
 
 }

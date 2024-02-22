@@ -19,9 +19,9 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class FuncaoProgramadaResource extends Resource
 {
     protected static ?string $model = FuncaoProgramada::class;
-    
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    protected static ?string $navigationIcon = 'heroicon-o-inbox-arrow-down';
 
     public static function form(Form $form): Form
     {
@@ -36,12 +36,12 @@ class FuncaoProgramadaResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('colaborador.nome')->label('nome'),
+                TextColumn::make('colaborador.nome')->label('nome')->searchable()->sortable(),
                 TextColumn::make('status')->label('Status'),
-                TextColumn::make('horario_mudanca')->label('Data da Troca'),
+                TextColumn::make('horario_mudanca')->label('Data da Troca')->searchable()->sortable(),
             ])
             ->filters([
-                
+
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

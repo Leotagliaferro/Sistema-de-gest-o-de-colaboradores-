@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\HistoricoPagamentoResource\Pages;
 use App\Filament\Resources\HistoricoPagamentoResource\RelationManagers;
+use App\Models\Colaborador;
 use App\Models\HistoricoPagamento;
 use Filament\Forms;
 use Filament\Forms\Components\TextInput;
@@ -19,13 +20,16 @@ class HistoricoPagamentoResource extends Resource
 {
     protected static ?string $model = HistoricoPagamento::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-currency-dollar';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                Forms\Components\DatePicker::make('data_pagamento')->label('data do pagamento'),
+                TextInput::make('valor_do_salario')->label('Valor do salario'),
+                TextInput::make('cargo')->label('cargo'),
+                TextInput::make('colaborador_id')->label('colaborador'),
             ]);
     }
 
@@ -33,15 +37,15 @@ class HistoricoPagamentoResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('data_pagamento')->label("Data do pagamento"),
-                TextColumn::make('valor_do_salario')->label("valor do salario"),
-                TextColumn::make('cargo')->label("cargo")
+                TextColumn::make('data_pagamento')->label("Data do pagamento")->searchable()->sortable(),
+                TextColumn::make('valor_do_salario')->label("valor do salario")->searchable()->sortable(),
+                TextColumn::make('cargo')->label("cargo")->searchable()->sortable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

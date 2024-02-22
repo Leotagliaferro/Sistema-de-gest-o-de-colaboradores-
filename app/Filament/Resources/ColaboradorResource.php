@@ -22,12 +22,13 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Leandrocfe\FilamentPtbrFormFields\Document;
+use function Laravel\Prompts\search;
 
 class ColaboradorResource extends Resource
 {
     protected static ?string $model = Colaborador::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-user';
 
     public static function form(Form $form): Form
     {
@@ -36,7 +37,7 @@ class ColaboradorResource extends Resource
                 TextInput::make('nome')->label("Nome"),
                 Document::make('cpf')->label("cpf")->dynamic(),
                 PhoneNumber::make('telefone')->label("telefone"),
-                FileUpload::make('url_foto')->label("Insira uma imagem"), 
+                FileUpload::make('url_foto')->label("Insira uma imagem"),
                 Select::make('cargo_id')
                 ->label('colaboradores')
                 ->options(Cargo::all()->pluck('nome_cargo', 'id'))
@@ -48,11 +49,13 @@ class ColaboradorResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('nome')->label("Nome"),
-                TextColumn::make('cpf')->label("CPF"),
+                TextColumn::make('nome')->label("Nome")->searchable()->sortable(),
+                TextColumn::make('cpf')->label("CPF")->searchable()->sortable(),
+
+
             ])
             ->filters([
-                //
+
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
