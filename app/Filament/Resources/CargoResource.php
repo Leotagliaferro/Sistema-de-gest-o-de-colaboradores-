@@ -29,7 +29,8 @@ class CargoResource extends Resource
         return $form
             ->schema([
                 TextInput::make('nome_cargo')->label("Nome do cargo")->minLength(2)->maxLength(255),
-                Money::make("salario")
+                Money::make("salario"),
+               // Forms\Components\Select::make('Colaborador_id')->label('Colaborador')->placeholder("Selecione um colaborador")->relationship('colaborador', 'nome')->required(),
             ]);
     }
 

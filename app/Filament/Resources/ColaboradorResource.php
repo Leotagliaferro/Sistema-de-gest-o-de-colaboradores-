@@ -35,13 +35,9 @@ class ColaboradorResource extends Resource
         return $form
             ->schema([
                 TextInput::make('nome')->label("Nome"),
-                Document::make('cpf')->label("cpf")->dynamic(),
+                Document::make('cpf')->label("cpf")->cpf(),
                 PhoneNumber::make('telefone')->label("telefone"),
                 FileUpload::make('url_foto')->label("Insira uma imagem"),
-                Select::make('cargo_id')
-                ->label('colaboradores')
-                ->options(Cargo::all()->pluck('nome_cargo', 'id'))
-                ->searchable()
             ]);
     }
 

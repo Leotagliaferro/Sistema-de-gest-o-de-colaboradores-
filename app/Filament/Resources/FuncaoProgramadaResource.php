@@ -28,7 +28,12 @@ class FuncaoProgramadaResource extends Resource
         return $form
             ->schema([
                 TextInput::make('cargo_id')->label('cargo'),
-                TextInput::make('horario_mudanca')->label('Data da Troca'),
+                Forms\Components\DatePicker::make('horario_mudanca')->label('Data da Troca'),
+                Forms\Components\Select::make('colaborador_id')
+                    ->label('Colaborador')
+                    ->placeholder("Selecione um colaborador")
+                    ->relationship('colaborador', 'nome')
+                    ->required(),
             ]);
     }
 

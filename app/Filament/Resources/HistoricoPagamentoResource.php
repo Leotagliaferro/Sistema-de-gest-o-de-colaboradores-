@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Fields\Money;
 use App\Filament\Resources\HistoricoPagamentoResource\Pages;
 use App\Filament\Resources\HistoricoPagamentoResource\RelationManagers;
 use App\Models\Colaborador;
@@ -27,9 +28,13 @@ class HistoricoPagamentoResource extends Resource
         return $form
             ->schema([
                 Forms\Components\DatePicker::make('data_pagamento')->label('data do pagamento'),
-                TextInput::make('valor_do_salario')->label('Valor do salario'),
+                Money::make('price')->label('Valor do salario'),
                 TextInput::make('cargo')->label('cargo'),
-                TextInput::make('colaborador_id')->label('colaborador'),
+                Forms\Components\Select::make('colaborador_id')
+                    ->label('Colaborador')
+                    ->placeholder("Selecione um colaborador")
+                    ->relationship('colaborador', 'nome')
+                    ->required(),
             ]);
     }
 
