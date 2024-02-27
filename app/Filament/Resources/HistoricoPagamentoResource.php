@@ -35,6 +35,7 @@ class HistoricoPagamentoResource extends Resource
                     ->placeholder("Selecione um colaborador")
                     ->relationship('colaborador', 'nome')
                     ->required(),
+                //teste
             ]);
     }
 
