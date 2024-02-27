@@ -51,7 +51,7 @@ class ColaboradorResource extends Resource
 
             ])
             ->filters([
-
+                //teste
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
